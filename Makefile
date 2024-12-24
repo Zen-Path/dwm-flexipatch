@@ -6,6 +6,9 @@ include config.mk
 SRC = drw.c dwm.c util.c
 OBJ = ${SRC:.c=.o}
 
+FLEX_SCRIPT = flexipatch-finalizer/flexipatch-finalizer.sh
+FLEX_TEMP_DIR = /tmp/dwm-flex
+
 # FreeBSD users, prefix all ifdef, else and endif statements with a . for this to work (e.g. .ifdef)
 
 ifdef YAJLLIBS
@@ -17,13 +20,7 @@ endif
 .c.o:
 	${CC} -c ${CFLAGS} $<
 
-${OBJ}: config.h config.mk patches.h
-
-config.h:
-	cp config.def.h $@
-
-patches.h:
-	cp patches.def.h $@
+${OBJ}: config.mk
 
 dwm: ${OBJ}
 	${CC} -o $@ ${OBJ} ${LDFLAGS}
@@ -45,7 +42,7 @@ dist: clean
 	gzip dwm-${VERSION}.tar
 	rm -rf dwm-${VERSION}
 
-install: all
+install: flex all
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	cp -f dwm ${DESTDIR}${PREFIX}/bin
 ifdef YAJLLIBS
@@ -68,4 +65,16 @@ uninstall:
 		${DESTDIR}${MANPREFIX}/man1/dwm.1\
 		${DESTDIR}${PREFIX}/share/xsessions/dwm.desktop
 
-.PHONY: all clean dist install uninstall
+flex:
+	rm -rf "$(FLEX_TEMP_DIR)"
+
+	if [ ! -f $(FLEX_SCRIPT) ]; then \
+		echo "warn: '$(FLEX_SCRIPT)' not found."; \
+		cp config.def.h config.h; \
+		exit 1; \
+	fi; \
+	bash $(FLEX_SCRIPT) --run --directory $(CURDIR) --output $(FLEX_TEMP_DIR)
+
+	cp "$(FLEX_TEMP_DIR)/config.def.h" config.h
+
+.PHONY: all clean dist install uninstall flex
