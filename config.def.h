@@ -1084,13 +1084,19 @@ static const Key keys[] = {
         /* Decrease master size */
         MODKEY, XK_h, setmfact, {.f = -0.05}
     },
+
+    #if STACKER_PATCH
     // 'j', 'k' in STACKKEYS
-    // {
-    //     MODKEY, XK_j, spawn, CMD("")
-    // },
-    // {
-    //     MODKEY, XK_k, spawn, CMD("")
-    // },
+	STACKKEYS(MODKEY, focus)
+	STACKKEYS(MODALT, push)
+	#else
+	{
+        MODKEY, XK_j, focusstack, {.i = +1 }
+    },
+	{
+        MODKEY, XK_k, focusstack, {.i = -1 }
+    },
+	#endif // STACKER_PATCH
     {
         /* Increase master size */
         MODKEY, XK_l, setmfact, {.f = +0.05}
@@ -1279,13 +1285,6 @@ static const Key keys[] = {
 	// #if FOCUSMASTER_PATCH || FOCUSMASTER_RETURN_PATCH
 	// { MODKEY|ControlMask,           XK_space,      focusmaster,            {0} },
 	// #endif // FOCUSMASTER_PATCH / FOCUSMASTER_RETURN_PATCH
-    // #if STACKER_PATCH
-	// STACKKEYS(MODKEY, focus)
-	// STACKKEYS(MODALT, push)
-	// #else
-	// { MODKEY,                       XK_j,          focusstack,             {.i = +1 } },
-	// { MODKEY,                       XK_k,          focusstack,             {.i = -1 } },
-	// #endif // STACKER_PATCH
 	// #if FOCUSDIR_PATCH
 	// { MODKEY,                       XK_Left,       focusdir,               {.i = 0 } }, // left
 	// { MODKEY,                       XK_Right,      focusdir,               {.i = 1 } }, // right
