@@ -1657,6 +1657,7 @@ static const Command commands[] = {
 #endif //
 static const Button buttons[] = {
 	/* click                event mask           button          function        argument */
+    // Use "xev -event mouse | rg 'button'" to get the buttons on your mouse.
 	#if BAR_STATUSBUTTON_PATCH
 	{ ClkButton,            0,                   Button1,        spawn,          {.v = dmenucmd } },
 	#endif // BAR_STATUSBUTTON_PATCH
@@ -1671,10 +1672,18 @@ static const Button buttons[] = {
 	{ ClkWinTitle,          0,                   Button3,        showhideclient, {0} },
 	#endif // BAR_WINTITLEACTIONS_PATCH
 	// { ClkWinTitle,          0,                   Button2,        zoom,           {0} },
+
 	#if BAR_STATUSCMD_PATCH && BAR_DWMBLOCKS_PATCH
 	{ ClkStatusText,        0,                   Button1,        sigstatusbar,   {.i = 1 } },
 	{ ClkStatusText,        0,                   Button2,        sigstatusbar,   {.i = 2 } },
 	{ ClkStatusText,        0,                   Button3,        sigstatusbar,   {.i = 3 } },
+	{ ClkStatusText,        0,                   Button4,        sigstatusbar,   {.i = 4 } },
+	{ ClkStatusText,        0,                   Button5,        sigstatusbar,   {.i = 5 } },
+	// { ClkStatusText,        0,                   Button6,        sigstatusbar,   {.i = 6 } },
+	// { ClkStatusText,        0,                   Button7,        sigstatusbar,   {.i = 7 } },
+	{ ClkStatusText,        0,                   Button8,        sigstatusbar,   {.i = 6 } },
+	{ ClkStatusText,        0,                   Button9,        sigstatusbar,   {.i = 6 } },
+
 	#elif BAR_STATUSCMD_PATCH
 	{ ClkStatusText,        0,                   Button1,        spawn,          {.v = statuscmd } },
 	{ ClkStatusText,        0,                   Button2,        spawn,          {.v = statuscmd } },
