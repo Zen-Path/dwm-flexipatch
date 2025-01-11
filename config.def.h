@@ -1679,10 +1679,10 @@ static const Button buttons[] = {
 	{ ClkStatusText,        0,                   Button3,        sigstatusbar,   {.i = 3 } },
 	{ ClkStatusText,        0,                   Button4,        sigstatusbar,   {.i = 4 } },
 	{ ClkStatusText,        0,                   Button5,        sigstatusbar,   {.i = 5 } },
-	// { ClkStatusText,        0,                   Button6,        sigstatusbar,   {.i = 6 } },
-	// { ClkStatusText,        0,                   Button7,        sigstatusbar,   {.i = 7 } },
-	{ ClkStatusText,        0,                   Button8,        sigstatusbar,   {.i = 6 } },
-	{ ClkStatusText,        0,                   Button9,        sigstatusbar,   {.i = 6 } },
+	{ ClkStatusText,        0,                   Button6,        sigstatusbar,   {.i = 6 } },
+	{ ClkStatusText,        0,                   Button7,        sigstatusbar,   {.i = 7 } },
+	{ ClkStatusText,        0,                   Button8,        sigstatusbar,   {.i = 8 } },
+	{ ClkStatusText,        0,                   Button9,        sigstatusbar,   {.i = 9 } },
 
 	#elif BAR_STATUSCMD_PATCH
 	{ ClkStatusText,        0,                   Button1,        spawn,          {.v = statuscmd } },
@@ -2109,3 +2109,4 @@ static IPCCommand ipccommands[] = {
 	#endif // XRDB_PATCH
 };
 #endif // IPC_PATCH
+
