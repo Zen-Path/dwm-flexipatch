@@ -431,7 +431,7 @@ const char *spcmd1[] = {
     "-o", "window.dimensions.columns=120", NULL
 };
 const char *spcmd2[] = {
-    TERM, "--title", "spython", "-o", "window.dimensions.lines=40",
+    TERM, "--title", "sppython", "-o", "window.dimensions.lines=40",
     "-o", "window.dimensions.columns=100", "-e", "python", "-q", NULL
 };
 const char *spcmd3[] = {
@@ -441,7 +441,7 @@ const char *spcmd3[] = {
 static Sp scratchpads[] = {
    /* name          cmd  */
    {"spterm",   spcmd1},
-   {"spython",  spcmd2},
+   {"sppython",  spcmd2},
    {"spcalc",   spcmd3},
 };
 #endif // SCRATCHPADS_PATCH
@@ -532,7 +532,7 @@ static const Rule rules[] = {
 	RULE(.instance = "spterm", .scratchkey = 's', .isfloating = 1)
 	#elif SCRATCHPADS_PATCH
     RULE(.title = "spterm", .tags = SPTAG(0), .isfloating = 1)
-    RULE(.title = "spython", .tags = SPTAG(1), .isfloating = 1)
+    RULE(.title = "sppython",    .tags = SPTAG(1), .isfloating = 1)
     RULE(.title = "spcalc", .tags = SPTAG(2), .isfloating = 1)
 	#endif // SCRATCHPADS_PATCH
 };
