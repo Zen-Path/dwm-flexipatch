@@ -434,10 +434,15 @@ const char *spcmd2[] = {
     TERM, "--title", "spython", "-o", "window.dimensions.lines=40",
     "-o", "window.dimensions.columns=100", "-e", "python", "-q", NULL
 };
+const char *spcmd3[] = {
+    TERM, "--title", "spcalc", "-o", "window.dimensions.lines=40",
+    "-o", "window.dimensions.columns=100", "-e", "fend", NULL
+};
 static Sp scratchpads[] = {
    /* name          cmd  */
    {"spterm",   spcmd1},
    {"spython",  spcmd2},
+   {"spcalc",   spcmd3},
 };
 #endif // SCRATCHPADS_PATCH
 
