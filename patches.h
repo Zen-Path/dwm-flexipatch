@@ -222,7 +222,7 @@
  * with the corresponding floating patch then these two will overlap unless the width of the
  * modules are controlled.
  */
-#define BAR_WINTITLE_HIDDEN_PATCH 1
+#define BAR_WINTITLE_HIDDEN_PATCH 0
 
 /* Title bar modules such as wintitle (default), fancybar and awesomebar
  * do not by default add left and/or right padding as they take up the
