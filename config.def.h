@@ -426,6 +426,7 @@ static const char *const autostart[] = {
 #if RENAMED_SCRATCHPADS_PATCH
 static const char *scratchpadcmd[] = {"s", "st", "-n", "spterm", NULL};
 #elif SCRATCHPADS_PATCH
+// TODO: find out if there's a better way to start an app with certain dimensions
 const char *spcmd1[] = {
     TERM, "--title", "spterm", "-o", "window.dimensions.lines=45",
     "-o", "window.dimensions.columns=120", NULL
@@ -531,9 +532,9 @@ static const Rule rules[] = {
 	#if RENAMED_SCRATCHPADS_PATCH
 	RULE(.instance = "spterm", .scratchkey = 's', .isfloating = 1)
 	#elif SCRATCHPADS_PATCH
-    RULE(.title = "spterm", .tags = SPTAG(0), .isfloating = 1)
+    RULE(.title = "spterm",     .tags = SPTAG(0), .isfloating = 1)
     RULE(.title = "sppython",    .tags = SPTAG(1), .isfloating = 1)
-    RULE(.title = "spcalc", .tags = SPTAG(2), .isfloating = 1)
+    RULE(.title = "spcalc",     .tags = SPTAG(2), .isfloating = 1)
 	#endif // SCRATCHPADS_PATCH
 };
 
@@ -2114,4 +2115,3 @@ static IPCCommand ipccommands[] = {
 	#endif // XRDB_PATCH
 };
 #endif // IPC_PATCH
-
