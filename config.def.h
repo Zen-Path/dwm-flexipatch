@@ -1068,8 +1068,12 @@ static const Key keys[] = {
         MODALT, XK_d, setlayout, {.v = &layouts[5]}
     },
     {
+        /* launch [f]ile ma~nager */
+        MODKEY, XK_f, spawn, CMD(TERM, "-e", "sh", "-c", "$FILE_MANAGER")
+    },
+    {
         /* launch file [f]inder */
-        MODKEY, XK_f, spawn, CMD(TERM, "-e", "fzfopen")
+        MODKEY|ShiftMask, XK_f, spawn, CMD(TERM, "-e", "fzfopen")
     },
 
     #if TOGGLEFULLSCREEN_PATCH
