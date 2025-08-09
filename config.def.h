@@ -1,3 +1,5 @@
+#include <X11/XF86keysym.h>
+
 /* See LICENSE file for copyright and license details. */
 
 /* Helper macros for spawning commands */
@@ -1275,6 +1277,175 @@ static const Key keys[] = {
     },
     {
         MODKEY, XK_F12, spawn, CMD("remaps")
+    },
+
+    /* XF86 Keys */
+    {
+        0,
+        XF86XK_AudioMute,
+        spawn,
+        SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -37 $(pidof dwmblocks)")
+    },
+    {
+        0,
+        XF86XK_AudioRaiseVolume,
+        spawn,
+        SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; kill -37 $(pidof dwmblocks)")
+    },
+    {
+        0,
+        XF86XK_AudioLowerVolume,
+        spawn,
+        SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; kill -37 $(pidof dwmblocks)")
+    },
+    {
+        0,
+        XF86XK_AudioPrev,
+        spawn,
+        CMD("mpc","prev")
+    },
+    {
+        0,
+        XF86XK_AudioNext,
+        spawn,
+        CMD("mpc", "next")
+    },
+    {
+        0,
+        XF86XK_AudioPause,
+        spawn,
+        CMD("mpc", "pause")
+    },
+    {
+        0,
+        XF86XK_AudioPlay,
+        spawn,
+        CMD("mpc", "play")
+    },
+    {
+        0,
+        XF86XK_AudioStop,
+        spawn,
+        CMD("mpc", "stop")
+    },
+    {
+        0,
+        XF86XK_AudioRewind,
+        spawn,
+        CMD("mpc", "seek", "-10")
+    },
+    {
+        0,
+        XF86XK_AudioForward,
+        spawn,
+        CMD("mpc", "seek", "+10")
+    },
+    {
+        0,
+        XF86XK_AudioMedia,
+        spawn,
+        CMD(TERM, "-e", "ncmpcpp")
+    },
+    {
+        0,
+        XF86XK_AudioMicMute,
+        spawn,
+        SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle")
+    },
+    {
+        0,
+        XF86XK_PowerOff,
+        spawn,
+        CMD("sysact")
+    },
+    {
+        0,
+        XF86XK_Calculator,
+        spawn,
+        CMD(TERM, "-e", "bc", "-l")
+    },
+    {
+        0,
+        XF86XK_Sleep,
+        spawn,
+        CMD("sudo", "-A", "zzz")
+    },
+    {
+        0,
+        XF86XK_WWW,
+        spawn,
+        CMD(BROWSER)
+    },
+    {
+        0,
+        XF86XK_DOS,
+        spawn,
+        {.v = termcmd } },
+    {
+        0,
+        XF86XK_ScreenSaver,
+        spawn,
+        SHCMD("slock & xset dpms force off; mpc pause; pauseallmpv")
+    },
+    {
+        0,
+        XF86XK_TaskPane,
+        spawn,
+        CMD(TERM, "-e", "htop")
+    },
+    {
+        0,
+        XF86XK_Mail,
+        spawn,
+        SHCMD(TERM " -e neomutt ; pkill -RTMIN+12 dwmblocks")
+    },
+    {
+        0,
+        XF86XK_MyComputer,
+        spawn,
+        CMD(TERM, "-e", "lfub", "/")
+    },
+    {
+        0,
+        XF86XK_Battery,
+        spawn,
+        CMD("")
+    },
+    {
+        0,
+        XF86XK_Launch1,
+        spawn,
+        CMD("xset", "dpms", "force", "off")
+    },
+    {
+        0,
+        XF86XK_TouchpadToggle,
+        spawn,
+        SHCMD("(synclient | grep 'TouchpadOff.*1' && synclient TouchpadOff=0) || synclient TouchpadOff=1")
+    },
+    {
+        0,
+        XF86XK_TouchpadOff,
+        spawn,
+        CMD("synclient", "TouchpadOff=1")
+    },
+    {
+        0,
+        XF86XK_TouchpadOn,
+        spawn,
+        CMD("synclient", "TouchpadOff=0")
+    },
+    {
+        0,
+        XF86XK_MonBrightnessUp,
+        spawn,
+        CMD("xbacklight", "-inc", "15")
+    },
+    {
+        0,
+        XF86XK_MonBrightnessDown,
+        spawn,
+        CMD("xbacklight", "-dec", "15")
     },
 
     // #if KEYMODES_PATCH
