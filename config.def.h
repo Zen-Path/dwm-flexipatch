@@ -1074,20 +1074,20 @@ static const Key keys[] = {
 		MODKEY, XK_0, view, {.ui = ~0 }
 	},
     {
-		MODKEY, XK_minus, spawn,
- 	    SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; kill -37 $(pidof dwmblocks)")
+		MODKEY, XK_minus, change_volume,
+        {.i = -5 }
     },
     {
-		MODALT, XK_minus, spawn,
- 	    SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%-; kill -37 $(pidof dwmblocks)")
+		MODALT, XK_minus, change_volume,
+        {.i = -15 }
     },
     {
-		MODKEY, XK_equal, spawn,
- 	    SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; kill -37 $(pidof dwmblocks)")
+		MODKEY, XK_equal, change_volume,
+        {.i = +5 }
     },
     {
-		MODALT, XK_equal, spawn,
- 	    SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+; kill -37 $(pidof dwmblocks)")
+		MODALT, XK_equal, change_volume,
+        {.i = +15 }
     },
     {
 		MODKEY, XK_BackSpace, spawn, CMD("")
@@ -1129,9 +1129,7 @@ static const Key keys[] = {
     },
     {
         /* [t]ask manager */
-        MODKEY, XK_t, spawn, SHCMD(
-            TERM" -e taskwarrior-tui && kill -39 $(pidof dwmblocks)")
-        /* Update the statusbar task count immediately */
+        MODKEY, XK_t, launch_tasks, {0}
     },
     {
         /* [t]ile layout */
@@ -1294,8 +1292,7 @@ static const Key keys[] = {
         MODALT, XK_b, setlayout, {.v = &layouts[2]}
     },
     {
-        MODKEY, XK_n, spawn, SHCMD(TERM" -e newsraft && kill -40 $(pidof dwmblocks)")
-        /* Update the news count immediately */
+        MODKEY, XK_n, launch_news, {0}
     },
     {
         /* [n]etwork manager */
@@ -1402,20 +1399,20 @@ static const Key keys[] = {
     {
         0,
         XF86XK_AudioMute,
-        spawn,
-        SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -37 $(pidof dwmblocks)")
-    },
-    {
-        0,
-        XF86XK_AudioRaiseVolume,
-        spawn,
-        SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; kill -37 $(pidof dwmblocks)")
+        toggle_mute,
+        {0}
     },
     {
         0,
         XF86XK_AudioLowerVolume,
-        spawn,
-        SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; kill -37 $(pidof dwmblocks)")
+        change_volume,
+        {.i = -5 }
+    },
+    {
+        0,
+        XF86XK_AudioRaiseVolume,
+        change_volume,
+        {.i = +5 }
     },
     {
         0,
@@ -1515,8 +1512,8 @@ static const Key keys[] = {
     {
         0,
         XF86XK_Mail,
-        spawn,
-        SHCMD(TERM " -e neomutt ; pkill -RTMIN+12 dwmblocks")
+        launch_mail,
+        {0}
     },
     {
         0,

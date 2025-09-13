@@ -762,6 +762,13 @@ static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
 
+// CUSTOM
+static void change_volume(const Arg *arg);
+static void launch_mail(const Arg *arg);
+static void launch_news(const Arg *arg);
+static void launch_tasks(const Arg *arg);
+static void toggle_mute(const Arg *arg);
+
 /* bar functions */
 
 #include "patch/include.h"
@@ -5390,6 +5397,86 @@ zoom(const Arg *arg)
 	pop(c);
 	#endif // ZOOMSWAP_PATCH
 }
+
+
+// CUSTOM
+
+typedef enum {
+    SIG_DATE        = 34 + 1,
+    SIG_BATTERY     = 34 + 2,
+    SIG_VOLUME      = 34 + 3,
+    SIG_INTERNET    = 34 + 4,
+    SIG_TASKS       = 34 + 5,
+    SIG_NEWS        = 34 + 6,
+    SIG_MAIL        = 34 + 7,
+    SIG_PACUP       = 34 + 8,
+    SIG_RECORDING   = 34 + 9,
+} DwmSignal;
+
+void
+change_volume(const Arg *arg) {
+    static char cmd[256];
+
+    snprintf(cmd, sizeof(cmd),
+             "wpctl set-volume @DEFAULT_AUDIO_SINK@ %d%%%c; "
+             "kill -%d $(pidof dwmblocks)",
+             abs(arg->i),
+             (arg->i < 0) ? '-' : '+',
+             SIG_VOLUME);
+
+    spawn(&(Arg){ .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } });
+}
+
+void
+launch_mail(const Arg *arg) {
+    static char cmd[256];
+
+    snprintf(cmd, sizeof(cmd),
+             TERM " -e neomutt; "
+             "kill -%d $(pidof dwmblocks)",
+             SIG_MAIL);
+
+    spawn(&(Arg){ .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } });
+}
+
+void
+launch_news(const Arg *arg) {
+    static char cmd[256];
+
+    snprintf(cmd, sizeof(cmd),
+             TERM " -e newsraft && "
+             "kill -%d $(pidof dwmblocks)",
+             SIG_NEWS);
+
+    spawn(&(Arg){ .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } });
+}
+
+void
+launch_tasks(const Arg *arg) {
+    static char cmd[256];
+
+    snprintf(cmd, sizeof(cmd),
+             TERM " -e taskwarrior-tui && "
+             "kill -%d $(pidof dwmblocks)",
+             SIG_TASKS);
+
+    spawn(&(Arg){ .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } });
+}
+
+void
+toggle_mute(const Arg *arg) {
+    static char cmd[256];
+
+    snprintf(cmd, sizeof(cmd),
+             "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; "
+             "kill -%d $(pidof dwmblocks)",
+             SIG_VOLUME);
+
+    spawn(&(Arg){ .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } });
+}
+
+// CUSTOM
+
 
 int
 main(int argc, char *argv[])
