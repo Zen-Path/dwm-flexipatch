@@ -1937,7 +1937,7 @@ void
 drawbar(Monitor *m)
 {
 	Bar *bar;
-	
+
 	#if !BAR_FLEXWINTITLE_PATCH
 	if (m->showbar)
 	#endif // BAR_FLEXWINTITLE_PATCH
@@ -5484,4 +5484,3 @@ main(int argc, char *argv[])
 	#endif // RESTARTSIG_PATCH
 	return EXIT_SUCCESS;
 }
-
