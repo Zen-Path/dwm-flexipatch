@@ -1519,7 +1519,7 @@ static const Key keys[] = {
         0,
         XF86XK_MyComputer,
         spawn,
-        CMD(TERM, "-e", "lfub", "/")
+        CMD(TERM, "-e", "yazi", "/")
     },
     {
         0,
