@@ -1478,7 +1478,7 @@ static const Key keys[] = {
         0,
         XF86XK_Calculator,
         spawn,
-        CMD(TERM, "-e", "bc", "-l")
+        CMD(TERM, "-e", "python3")
     },
     {
         0,
