@@ -1353,7 +1353,7 @@ static const Key keys[] = {
         MODKEY, XK_Delete, spawn, CMD("")
     },
     {
-        MODKEY, XK_Insert, spawn, CMD("kbselect")
+        MODKEY, XK_Insert, spawn, CMD("keyboard_select")
     },
     {
         MODKEY, XK_Scroll_Lock, spawn, SHCMD("killall screenkey || screenkey --mouse --opacity 0.6")
