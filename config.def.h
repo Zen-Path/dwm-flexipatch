@@ -1341,13 +1341,10 @@ static const Key keys[] = {
 
     /* Special Keys */
     {
-        0, XK_Print, spawn, CMD("screenshot_utility")
+        0, XK_Print, spawn, CMD("")
     },
     {
-        MODKEY, XK_Print, spawn, CMD("dmenurecord")
-    },
-    {
-        MODALT, XK_Print, spawn, CMD("dmenurecord", "kill")
+        MODKEY, XK_Print, spawn, CMD("")
     },
     {
         MODKEY, XK_Delete, spawn, CMD("")
@@ -1374,10 +1371,13 @@ static const Key keys[] = {
         MODKEY, XK_F4, spawn, CMD("")
     },
     {
-        MODKEY, XK_F5, spawn, CMD("")
+        MODKEY, XK_F5, spawn, CMD("dmenurecord")
     },
     {
-        MODKEY, XK_F6, spawn, CMD("")
+        MODALT, XK_F5, spawn, CMD("dmenurecord", "kill")
+    },
+    {
+        MODKEY, XK_F6, spawn, CMD("screenshot_utility")
     },
     {
         MODKEY, XK_F7, spawn, CMD("")
