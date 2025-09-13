@@ -10,7 +10,7 @@
 #define TERM "alacritty"
 #define TERMCLASS "Alacritty"
 #define BROWSER "firefox"
-#define STATUSBAR "dwmblocks"
+
 
 /* appearance */
 #if ROUNDED_CORNERS_PATCH
