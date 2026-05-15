@@ -1152,7 +1152,7 @@ static const Key keys[] = {
         MODKEY, XK_y, spawn, CMD("")
     },
     {
-        MODKEY, XK_u, spawn, CMD("select_unicode")
+        MODKEY, XK_u, spawn, CMD("unicode_selector")
     },
     {
         MODKEY, XK_i, incnmaster, {.i = +1 }
