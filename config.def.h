@@ -1184,7 +1184,7 @@ static const Key keys[] = {
     },
     {
         /* launch [s]ystem actions */
-        MODKEY, XK_s, spawn, CMD("sysact")
+        MODKEY, XK_s, spawn, CMD("system_actions")
     },
 
     #if STICKY_PATCH
@@ -1486,7 +1486,7 @@ static const Key keys[] = {
         0,
         XF86XK_PowerOff,
         spawn,
-        CMD("sysact")
+        CMD("system_actions")
     },
     {
         0,
