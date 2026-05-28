@@ -1206,7 +1206,7 @@ static const Key keys[] = {
     },
     {
         /* launch file [f]inder */
-        MODKEY|ShiftMask, XK_f, spawn, CMD(TERM, "-e", "fzfopen")
+        MODKEY|ShiftMask, XK_f, spawn, CMD(TERM, "-e", "zsh","-c", "source $ZDOTDIR/.zshrc && fzfopen; zsh")
     },
 
     #if TOGGLEFULLSCREEN_PATCH
