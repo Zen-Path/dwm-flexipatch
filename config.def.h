@@ -443,26 +443,32 @@ static const char *const autostart[] = {
 #endif // COOL_AUTOSTART_PATCH
 
 #if RENAMED_SCRATCHPADS_PATCH
-static const char *scratchpadcmd[] = {"s", "st", "-n", "spterm", NULL};
+static const char *scratchpadcmd[] = {"s", "st", "-n", "sp-term", NULL};
 #elif SCRATCHPADS_PATCH
 // TODO: find out if there's a better way to start an app with certain dimensions
 const char *spcmd1[] = {
-    TERM, "--title", "spterm", "-o", "window.dimensions.lines=45",
-    "-o", "window.dimensions.columns=120", NULL
+    TERM, "--title", "sp-term",
+    "-o", "window.dimensions.lines=45",
+    "-o", "window.dimensions.columns=120",
+    NULL
 };
 const char *spcmd2[] = {
-    TERM, "--title", "sppython", "-o", "window.dimensions.lines=40",
-    "-o", "window.dimensions.columns=100", "-e", "python", "-q", NULL
+    TERM, "--title", "sp-python",
+    "-o", "window.dimensions.lines=40",
+    "-o", "window.dimensions.columns=100",
+    "-e", "python", "-q", NULL
 };
 const char *spcmd3[] = {
-    TERM, "--title", "spcalc", "-o", "window.dimensions.lines=40",
-    "-o", "window.dimensions.columns=100", "-e", "fend", NULL
+    TERM, "--title", "sp-calc",
+    "-o", "window.dimensions.lines=40",
+    "-o", "window.dimensions.columns=100",
+    "-e", "fend", NULL
 };
 static Sp scratchpads[] = {
    /* name          cmd  */
-   {"spterm",   spcmd1},
-   {"sppython",  spcmd2},
-   {"spcalc",   spcmd3},
+   {"sp-term",      spcmd1},
+   {"sp-python",    spcmd2},
+   {"sp-calc",      spcmd3},
 };
 #endif // SCRATCHPADS_PATCH
 
@@ -549,11 +555,11 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
     RULE(.class = TERMCLASS)
 	#if RENAMED_SCRATCHPADS_PATCH
-	RULE(.instance = "spterm", .scratchkey = 's', .isfloating = 1)
+	RULE(.instance = "sp-term", .scratchkey = 's', .isfloating = 1)
 	#elif SCRATCHPADS_PATCH
-    RULE(.title = "spterm",     .tags = SPTAG(0), .isfloating = 1)
-    RULE(.title = "sppython",    .tags = SPTAG(1), .isfloating = 1)
-    RULE(.title = "spcalc",     .tags = SPTAG(2), .isfloating = 1)
+    RULE(.title = "sp-term",     .tags = SPTAG(0), .isfloating = 1)
+    RULE(.title = "sp-python",    .tags = SPTAG(1), .isfloating = 1)
+    RULE(.title = "sp-calc",     .tags = SPTAG(2), .isfloating = 1)
 	#endif // SCRATCHPADS_PATCH
 };
 
