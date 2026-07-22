@@ -1148,12 +1148,8 @@ static const Key keys[] = {
         MODKEY, XK_r, spawn, CMD(TERM, "-e", "btm")
     },
     {
-        /* [t]ask manager */
-        MODKEY, XK_t, launch_tasks, {0}
-    },
-    {
         /* [t]ile layout */
-        MODALT, XK_t, setlayout, {.v = &layouts[0]} },
+        MODKEY, XK_t, setlayout, {.v = &layouts[0]} },
     {
         MODKEY, XK_y, spawn, CMD("")
     },
